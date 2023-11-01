@@ -26,4 +26,15 @@ router.post('/', (req, res) => {
   res.status(201).send(users.slice(-1));
 });
 
+// specific fruit page
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+
+  const foundUser = users.find((user) => user.id === id);
+
+  !foundUser
+    ? res.status(404).send({ error: `User with id ${id} not found` })
+    : res.status(200).send(foundUser);
+});
+
 export default router;
