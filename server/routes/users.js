@@ -10,7 +10,7 @@ const router = express.Router();
 // list of users
 router.get('/', (req, res) => res.send(users));
 
-// create a fruit
+// create a user
 router.post('/', (req, res) => {
   const user = req.body;
 
@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
   res.status(201).send(users.slice(-1));
 });
 
-// specific fruit page
+// specific user page
 router.get('/:id', (req, res) => {
   const { id } = req.params;
 
@@ -36,5 +36,7 @@ router.get('/:id', (req, res) => {
     ? res.status(404).send({ error: `User with id ${id} not found` })
     : res.status(200).send(foundUser);
 });
+
+// delete a user
 
 export default router;
