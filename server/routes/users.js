@@ -29,7 +29,6 @@ router.post('/', (req, res) => {
 // specific user page
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-
   const foundUser = users.find((user) => user.id === id);
 
   !foundUser
@@ -38,5 +37,15 @@ router.get('/:id', (req, res) => {
 });
 
 // delete a user
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  const foundIndex = users.findIndex((user) => user.id === id);
+  const foundUser = users[foundIndex];
+
+  if (!foundUser) res.sendStatus(404);
+
+  users.splice(foundIndex, 1);
+  res.sendStatus(204);
+});
 
 export default router;
