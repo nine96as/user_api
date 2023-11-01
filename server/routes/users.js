@@ -48,4 +48,24 @@ router.delete('/:id', (req, res) => {
   res.sendStatus(204);
 });
 
+// partially update a user
+router.patch('/:id', (req, res) => {
+  const { id } = req.params;
+  const { firstName, lastName, age } = req.body;
+  const foundUser = users.find((user) => user.id === id);
+
+  if (!foundUser)
+    res.status(404).send({ error: `User with id ${id} not found` });
+
+  if (!firstName && !lastName && !age)
+    res
+      .status(422)
+      .send({ error: 'You must specify one of: first name, last name, age' });
+
+  if (firstName) foundUser.firstName = firstName;
+  if (lastName) foundUser.lastName = lastName;
+  if (age) foundUser.age = age;
+  res.send(200).send(foundUser);
+});
+
 export default router;
