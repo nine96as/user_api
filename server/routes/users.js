@@ -1,4 +1,5 @@
 import express from 'express';
+import { v4 as uuidv4 } from 'uuid';
 
 import users from '../users.json' assert { type: 'json' };
 
@@ -21,8 +22,8 @@ router.post('/', (req, res) => {
   if (!user.age)
     res.status(422).send({ error: 'You must provide the age of the user' });
 
-  users.push(user);
-  res.status(201).send(user);
+  users.push({ ...user, id: uuidv4() });
+  res.status(201).send(users.slice(-1));
 });
 
 export default router;
