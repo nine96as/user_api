@@ -18,6 +18,13 @@ app.get('/', (req, res) =>
   res.status(200).send({
     message: 'Welcome!',
     description: 'USERS_API',
-    endpoints: ['GET /']
+    endpoints: [
+      'GET  /',
+      'GET  /users',
+      'GET  /users/:id',
+      'POST  /users',
+      'PATCH  /users/:id',
+      'DELETE  /users/:id'
+    ]
   })
 );
