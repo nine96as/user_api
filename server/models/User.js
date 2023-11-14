@@ -27,4 +27,13 @@ export class User {
       throw new Error(e);
     }
   }
+
+  static findById(id) {
+    try {
+      const data = users.find((e) => e.id === id);
+      return new User(data);
+    } catch (e) {
+      throw new Error(`User with id ${id} not found`);
+    }
+  }
 }
