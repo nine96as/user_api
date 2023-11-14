@@ -1,13 +1,13 @@
 import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
 
-import users from '../users.json' assert { type: 'json' };
+import users from '../data/users.json' assert { type: 'json' };
 
 const router = express.Router();
 
 // all routes in here start with /users
 
-// list of users
+// index route
 router.get('/', (req, res) => res.send(users));
 
 // create a user
@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
   res.status(201).send(users.slice(-1));
 });
 
-// specific user page
+// show a user
 router.get('/:id', (req, res) => {
   const { id } = req.params;
   const foundUser = users.find((user) => user.id === id);
