@@ -1,8 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 
 import { users } from '../data/index.js';
+import { User } from '../models/User.js';
 
-export const index = (req, res) => res.send(users);
+export const index = (req, res) => res.send({ data: User.getAll() });
 
 export const post = (req, res) => {
   const user = req.body;
