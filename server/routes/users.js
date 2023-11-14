@@ -1,7 +1,7 @@
 import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
 
-import users from '../data/users.json' assert { type: 'json' };
+import { users } from '../data/index.js';
 
 const router = express.Router();
 
