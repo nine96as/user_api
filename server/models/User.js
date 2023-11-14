@@ -36,4 +36,15 @@ export class User {
       throw new Error(`User with id ${id} not found`);
     }
   }
+
+  destroy() {
+    const data = users.find((e) => e.id === this.id);
+
+    if (data) {
+      const index = users.indexOf(data);
+      users.splice(index, 1);
+    } else {
+      throw new Error('User was not found');
+    }
+  }
 }
