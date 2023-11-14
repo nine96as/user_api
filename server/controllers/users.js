@@ -13,12 +13,12 @@ export const create = (req, res) => {
 };
 
 export const show = (req, res) => {
-  const { id } = req.params;
-  const foundUser = users.find((user) => user.id === id);
-
-  !foundUser
-    ? res.status(404).send({ error: `User with id ${id} not found` })
-    : res.status(200).send(foundUser);
+  try {
+    const { id } = req.params;
+    res.status(200).send({ data: User.findById(id) });
+  } catch (e) {
+    res.status(404).send({ error: e.message });
+  }
 };
 
 export const destroy = (req, res) => {
