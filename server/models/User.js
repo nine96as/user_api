@@ -1,6 +1,6 @@
-import { users } from '../data';
+import { users } from '../data/index.js';
 
-class User {
+export class User {
   constructor(data) {
     this.id = data.id;
     this.firstName = data.firstName;
