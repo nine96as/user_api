@@ -1,7 +1,7 @@
 import cors from 'cors';
 import express from 'express';
 import logger from 'morgan';
-import usersRouter from './routes/users.js';
+import userRoutes from './routes/users.js';
 
 export const app = express();
 
@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(logger('dev'));
 
 // router section
-app.use('/users', usersRouter);
+app.use('/users', userRoutes);
 
 // home route
 app.get('/', (req, res) =>
