@@ -8,7 +8,7 @@ export const create = (req, res) => {
     const data = req.body;
     res.status(201).send({ data: User.create(data) });
   } catch (e) {
-    res.status(422).send({ error: e.message });
+    res.status(400).send({ error: e.message });
   }
 };
 
@@ -33,20 +33,12 @@ export const destroy = (req, res) => {
 };
 
 export const update = (req, res) => {
-  const { id } = req.params;
-  const { firstName, lastName, age } = req.body;
-  const foundUser = users.find((user) => user.id === id);
+  try {
+    const { id } = req.params;
+    const foundUser = User.findById(id);
 
-  if (!foundUser)
-    res.status(404).send({ error: `User with id ${id} not found` });
-
-  if (!firstName && !lastName && !age)
-    res
-      .status(422)
-      .send({ error: 'You must specify one of: first name, last name, age' });
-
-  if (firstName) foundUser.firstName = firstName;
-  if (lastName) foundUser.lastName = lastName;
-  if (age) foundUser.age = age;
-  res.send(200).send(foundUser);
+    res.status(200).send({ data: foundUser.update(req.body) });
+  } catch (e) {
+    res.status(400).send({ error: e.message });
+  }
 };
