@@ -47,4 +47,24 @@ export class User {
       throw new Error('User was not found');
     }
   }
+
+  update(data) {
+    try {
+      const userData = users.find((e) => e.id === this.id);
+      const { firstName, lastName, age } = data;
+
+      if (!userData) throw new Error('User not found!');
+
+      if (!firstName && !lastName && !age)
+        throw new Error('You must specify one of: first name, last name, age');
+
+      if (firstName) userData.firstName = firstName;
+      if (lastName) userData.lastName = lastName;
+      if (age) userData.age = age;
+
+      return new User(userData);
+    } catch (e) {
+      throw new Error(e.message);
+    }
+  }
 }
