@@ -22,14 +22,14 @@ export const show = (req, res) => {
 };
 
 export const destroy = (req, res) => {
-  const { id } = req.params;
-  const foundIndex = users.findIndex((user) => user.id === id);
-  const foundUser = users[foundIndex];
-
-  if (!foundUser) res.sendStatus(404);
-
-  users.splice(foundIndex, 1);
-  res.sendStatus(204);
+  try {
+    const { id } = req.params;
+    const foundUser = User.findById(id);
+    foundUser.destroy();
+    res.sendStatus(204);
+  } catch (e) {
+    res.status(404).send({ error: e.message });
+  }
 };
 
 export const update = (req, res) => {
