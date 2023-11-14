@@ -23,12 +23,3 @@ This acts as a back-end server which facililates CRUD operations on users. This 
    ```sh
    API listening on port: http://localhost:3000 #exemplar output
    ```
-
-## Routes
-
-| Route        | Method | Response                                                                                                                                                                                                                   |
-| ------------ | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/`          | `GET`  | Returns a JSON object containing a simple description, and a list of the accessible endpoints.                                                                                                                             |
-| `/users`     | `GET`  | Returns a JSON object containing all of the users.                                                                                                                                                                         |
-| `/users`     | `POST` | Accepts a JSON object and uses it to create and store a new user.                                                                                                                                                          |
-| `/users/:id` | `GET`  | Returns a JSON object representing a single user from the collection, selected by `:id`. If the id is invalid (non-numeric or out-of-bounds), returns a JSON object explaining the problem, with `404` as the status code. |
