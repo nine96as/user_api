@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { destroy, index, post, show, update } from '../controllers/users.js';
+import { create, destroy, index, show, update } from '../controllers/users.js';
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ const router = express.Router();
 router.get('/', index);
 
 // create a user
-router.post('/', post);
+router.post('/', create);
 
 // show a user
 router.get('/:id', show);
