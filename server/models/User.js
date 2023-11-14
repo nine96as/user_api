@@ -7,4 +7,8 @@ class User {
     this.lastName = data.lastName;
     this.age = data.age;
   }
+
+  static getAll() {
+    return users.map((e) => new User(e));
+  }
 }
