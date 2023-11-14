@@ -1,23 +1,15 @@
-import { v4 as uuidv4 } from 'uuid';
-
 import { users } from '../data/index.js';
 import { User } from '../models/User.js';
 
 export const index = (req, res) => res.send({ data: User.getAll() });
 
-export const post = (req, res) => {
-  const user = req.body;
-
-  if (!user.firstName || !user.lastName)
-    res
-      .status(422)
-      .send({ error: 'You must provide the first and last name of the user' });
-
-  if (!user.age)
-    res.status(422).send({ error: 'You must provide the age of the user' });
-
-  users.push({ ...user, id: uuidv4() });
-  res.status(201).send(users.slice(-1));
+export const create = (req, res) => {
+  try {
+    const data = req.body;
+    res.status(201).send({ data: User.create(data) });
+  } catch (e) {
+    res.status(422).send({ error: e.message });
+  }
 };
 
 export const show = (req, res) => {
